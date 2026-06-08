@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.12 0.015 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.015 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.015 240);
+  --primary: oklch(0.55 0.22 260); /* Indigo-Blue */
+  --primary-foreground: oklch(0.98 0.005 240);
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.15 0.015 240);
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.45 0.015 240);
+  --accent: oklch(0.95 0.01 240);
+  --accent-foreground: oklch(0.15 0.015 240);
+  --destructive: oklch(0.55 0.2 15);
+  --destructive-foreground: oklch(0.98 0.005 240);
+  --border: oklch(0.9 0.01 240);
+  --input: oklch(0.9 0.01 240);
+  --ring: oklch(0.55 0.22 260);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: oklch(0.1 0.01 240);
+  --foreground: oklch(0.95 0.005 240);
+  --card: oklch(0.12 0.015 240);
+  --card-foreground: oklch(0.95 0.005 240);
+  --popover: oklch(0.12 0.015 240);
+  --popover-foreground: oklch(0.95 0.005 240);
+  --primary: oklch(0.65 0.2 260);
+  --primary-foreground: oklch(0.1 0.01 240);
+  --secondary: oklch(0.18 0.015 240);
+  --secondary-foreground: oklch(0.95 0.005 240);
+  --muted: oklch(0.18 0.015 240);
+  --muted-foreground: oklch(0.65 0.01 240);
+  --accent: oklch(0.18 0.015 240);
+  --accent-foreground: oklch(0.95 0.005 240);
+  --destructive: oklch(0.45 0.15 15);
+  --destructive-foreground: oklch(0.95 0.005 240);
+  --border: oklch(0.2 0.015 240);
+  --input: oklch(0.2 0.015 240);
+  --ring: oklch(0.65 0.2 260);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
