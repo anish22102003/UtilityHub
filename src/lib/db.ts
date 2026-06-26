@@ -2,82 +2,22 @@ import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 
-let prisma: PrismaClient;
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-const databaseUrl = process.env.DATABASE_URL;
-
-const makeMockPrisma = () => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn("Prisma: DATABASE_URL is not set. Using mock database client.");
-  }
-  return new Proxy({} as any, {
-    get(target, prop) {
-      if (prop === 'then') return undefined;
-      return new Proxy(() => {}, {
-        get(t, p) {
-          if (p === 'then') return undefined;
-          return async (...args: any[]) => {
-            if (process.env.NODE_ENV !== 'production') {
-              console.warn(`Mock Prisma: ${String(prop)}.${String(p)} called.`);
-            }
-            if (p === 'count') return 0;
-            if (p === 'findMany') return [];
-            if (p === 'groupBy') return [];
-            if (p === 'create') {
-              const data = args[0]?.data || {};
-              return {
-                id: "mock-id",
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                ...data
-              };
-            }
-            if (p === 'findUnique' || p === 'findFirst') return null;
-            if (p === 'update') return null;
-            if (p === 'delete') return null;
-            return null;
-          };
-        },
-        apply(t, thisArg, args) {
-          return Promise.resolve(null);
-        }
-      });
+const getClient = () => {
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
     }
   });
+  const adapter = new PrismaPg(pool);
+  return new PrismaClient({ adapter });
 };
 
-const getPostgresAdapter = (urlString: string) => {
-  try {
-    const pool = new Pool({
-      connectionString: urlString,
-      max: 10,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
-    return new PrismaPg(pool);
-  } catch (error) {
-    console.error("Failed to initialize PostgreSQL adapter:", error);
-    throw error;
-  }
-};
+export const prisma =
+  globalForPrisma.prisma || getClient();
 
-if (databaseUrl) {
-  const globalForPrisma = global as unknown as { prisma: PrismaClient };
-  if (process.env.NODE_ENV === 'production') {
-    const adapter = getPostgresAdapter(databaseUrl);
-    prisma = new PrismaClient({ adapter });
-  } else {
-    if (!globalForPrisma.prisma) {
-      const adapter = getPostgresAdapter(databaseUrl);
-      globalForPrisma.prisma = new PrismaClient({ adapter });
-    }
-    prisma = globalForPrisma.prisma;
-  }
-} else {
-  // If no DB url, construct mock client to allow static compilation and running without a database.
-  prisma = makeMockPrisma() as unknown as PrismaClient;
-}
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
-export { prisma };
 export default prisma;
