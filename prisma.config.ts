@@ -1,6 +1,5 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
-import { Pool } from "pg";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -8,15 +7,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    adapter: async () => {
-      const { PrismaPg } = await import("@prisma/adapter-pg");
-      const pool = new Pool({
-        connectionString: process.env["DATABASE_URL"],
-        ssl: {
-          rejectUnauthorized: false
-        }
-      });
-      return new PrismaPg(pool);
-    }
+    url: process.env["DATABASE_URL"],
   },
 });
