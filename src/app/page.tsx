@@ -305,7 +305,7 @@ export default function Home() {
       <section className="bg-card border border-border rounded-3xl p-6 sm:p-10 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <h2 className="text-2xl sm:text-3xl font-extrabold">Frequently Asked Questions</h2>
-          <p className="text-sm text-muted-foreground">Got questions? We have answers. Learn about the security and operation of UtilityHub.</p>
+          <p className="text-sm text-muted-foreground">Got questions? We have answers. Learn about the security and operation of ToolMitra.</p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
@@ -346,9 +346,9 @@ export default function Home() {
 
       {/* SEO Content Section */}
       <section className="prose dark:prose-invert max-w-4xl mx-auto text-center border-t border-border pt-12 space-y-4">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground">Why choose UtilityHub as your default toolset?</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">Why choose ToolMitra as your default toolset?</h2>
         <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          UtilityHub provides a comprehensive web toolkit featuring a fully client-side design system. Unlike other developer or utility services, UtilityHub does not track your personal inputs. Your files, barcodes, passwords, and custom data remain in your browser. We focus on lightweight page payloads, maximum performance, and mobile accessibility, making it perfect for bookmarks, mobile quick access, and workflow automation.
+          ToolMitra provides a comprehensive web toolkit featuring a fully client-side design system. Unlike other developer or utility services, ToolMitra does not track your personal inputs. Your files, barcodes, passwords, and custom data remain in your browser. We focus on lightweight page payloads, maximum performance, and mobile accessibility, making it perfect for bookmarks, mobile quick access, and workflow automation.
         </p>
       </section>
     </div>

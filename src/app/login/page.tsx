@@ -7,7 +7,7 @@ import Link from "next/router";
 import { Wrench, Lock, Mail, AlertTriangle, ArrowLeft } from "lucide-react";
 
 export default function Login() {
-  const [email, setEmail] = React.useState("admin@utilityhub.com");
+  const [email, setEmail] = React.useState("anishkumarbiswas2003@gmail.com");
   const [password, setPassword] = React.useState("admin123");
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
@@ -53,7 +53,7 @@ export default function Login() {
           <div className="p-3 bg-primary/10 rounded-full text-primary mb-3">
             <Wrench className="h-8 w-8" />
           </div>
-          <h2 className="text-2xl font-extrabold text-foreground">Sign in to UtilityHub</h2>
+          <h2 className="text-2xl font-extrabold text-foreground">Sign in to ToolMitra</h2>
           <p className="text-sm text-muted-foreground mt-1">Access advanced administrative tools and statistics.</p>
         </div>
 
@@ -75,7 +75,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="admin@utilityhub.com"
+                placeholder="anishkumarbiswas2003@gmail.com"
               />
             </div>
           </div>

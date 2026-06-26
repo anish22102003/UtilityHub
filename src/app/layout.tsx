@@ -6,23 +6,23 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "UtilityHub - All-in-One Online Web Utilities",
-    template: "%s | UtilityHub"
+    default: "ToolMitra - All-in-One Online Web Utilities",
+    template: "%s | ToolMitra"
   },
   description: "A secure, fast, and feature-rich suite of online utility tools including QR generator/scanner, password manager, unit/timezone converters, age calculator, and URL shortener.",
   keywords: ["utility tools", "QR generator", "QR scanner", "password generator", "URL shortener", "timezone converter", "unit converter", "age calculator"],
-  authors: [{ name: "UtilityHub Team" }],
+  authors: [{ name: "Anish Biswas" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://utilityhub.vercel.app",
-    title: "UtilityHub - All-in-One Online Web Utilities",
+    url: "https://toolmitra.vercel.app",
+    title: "ToolMitra - All-in-One Online Web Utilities",
     description: "A secure, fast, and feature-rich suite of online utility tools.",
-    siteName: "UtilityHub"
+    siteName: "ToolMitra"
   },
   twitter: {
     card: "summary_large_image",
-    title: "UtilityHub - All-in-One Online Web Utilities",
+    title: "ToolMitra - All-in-One Online Web Utilities",
     description: "A secure, fast, and feature-rich suite of online utility tools."
   }
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Wrench, Heart } from "lucide-react";
+import { Wrench, Heart, Mail, Globe } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,7 +11,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary">
               <Wrench className="h-5 w-5" />
-              <span>UtilityHub</span>
+              <span>ToolMitra</span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-md">
               Your comprehensive, all-in-one suite of modern web utilities. 
@@ -42,16 +42,35 @@ export function Footer() {
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Project</h3>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/admin" className="hover:text-primary transition-colors">Admin Dashboard</Link></li>
-                <li><span className="text-xs text-muted-foreground flex items-center gap-1 mt-4">Made with <Heart className="h-3 w-3 text-destructive fill-destructive" /> for utility</span></li>
+              <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Admin & Info</h3>
+              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <li className="text-foreground font-semibold">Anish Biswas</li>
+                <li>
+                  <a href="mailto:anishkumarbiswas2003@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span className="truncate">anishkumarbiswas2003@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/anish-biswas-892878332/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Globe className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span>LinkedIn Profile</span>
+                  </a>
+                </li>
+                <li className="pt-2 border-t border-border">
+                  <Link href="/admin" className="hover:text-primary transition-colors font-medium">Admin Dashboard</Link>
+                </li>
+                <li>
+                  <span className="text-xs text-muted-foreground flex items-center gap-1 mt-2">
+                    Made with <Heart className="h-3 w-3 text-destructive fill-destructive" /> for utility
+                  </span>
+                </li>
               </ul>
             </div>
           </div>
         </div>
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} UtilityHub. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} ToolMitra. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <span className="hover:text-foreground cursor-pointer transition-colors">Privacy Policy</span>
             <span className="hover:text-foreground cursor-pointer transition-colors">Terms of Service</span>

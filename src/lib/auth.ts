@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "admin@utilityhub.com" },
+        email: { label: "Email", type: "email", placeholder: "anishkumarbiswas2003@gmail.com" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
         
-        const defaultAdminEmail = process.env.ADMIN_EMAIL || "admin@utilityhub.com";
+        const defaultAdminEmail = process.env.ADMIN_EMAIL || "anishkumarbiswas2003@gmail.com";
         const defaultAdminPassword = process.env.ADMIN_PASSWORD || "admin123";
 
         // Admin login fallback
@@ -84,5 +84,5 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-  secret: process.env.NEXTAUTH_SECRET || "supersecretforutilityhub"
+  secret: process.env.NEXTAUTH_SECRET || "supersecretfortoolmitra"
 };

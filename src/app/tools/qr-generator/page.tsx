@@ -72,7 +72,7 @@ export default function QRGenerator() {
         return `tel:${phone}`;
       case "text":
       default:
-        return text || "UtilityHub QR Code";
+        return text || "ToolMitra QR Code";
     }
   }, [qrType, url, emailTo, emailSubject, emailBody, wifiSsid, wifiPassword, wifiEncryption, wifiHidden, phone, text]);
 
@@ -137,7 +137,7 @@ export default function QRGenerator() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "UtilityHub QR Code Generator",
+          title: "ToolMitra QR Code Generator",
           text: "Check out this handy QR code generator tool!",
           url: window.location.href,
         });
@@ -253,7 +253,7 @@ export default function QRGenerator() {
                       type="email"
                       value={emailTo}
                       onChange={(e) => setEmailTo(e.target.value)}
-                      placeholder="hello@utilityhub.com"
+                      placeholder="hello@toolmitra.com"
                       className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>

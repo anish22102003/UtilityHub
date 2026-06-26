@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "UtilityHub - All-in-One Online Web Utilities",
-    short_name: "UtilityHub",
+    name: "ToolMitra - All-in-One Online Web Utilities",
+    short_name: "ToolMitra",
     description: "Access clean, fast, secure online tools for passwords, QR codes, conversions, age calculations, timezone tracking, and url shortening.",
     start_url: "/",
     display: "standalone",
