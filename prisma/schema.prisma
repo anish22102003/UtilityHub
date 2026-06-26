@@ -1,26 +1,25 @@
-datasource db {
-  provider = "mysql"
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
+datasource db {
+  provider = "postgresql"
+}
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -34,18 +33,18 @@ model Session {
 }
 
 model User {
-  id            String      @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?     @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
-  password      String?     // For credentials provider login
-  role          String      @default("USER") // USER or ADMIN
+  password      String?
+  role          String     @default("USER")
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   accounts      Account[]
   sessions      Session[]
   shortUrls     ShortUrl[]
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
 }
 
 model VerificationToken {
@@ -59,26 +58,26 @@ model VerificationToken {
 
 model ShortUrl {
   id          String       @id @default(cuid())
-  originalUrl String       @db.Text
+  originalUrl String
   slug        String       @unique
   clicks      Int          @default(0)
   userId      String?
-  user        User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
-  clickEvents ClickEvent[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  clickEvents ClickEvent[]
+  user        User?        @relation(fields: [userId], references: [id])
 }
 
 model ClickEvent {
   id         String   @id @default(cuid())
   shortUrlId String
-  shortUrl   ShortUrl @relation(fields: [shortUrlId], references: [id], onDelete: Cascade)
   referrer   String?
   browser    String?
   os         String?
   device     String?
   country    String?  @default("Unknown")
   timestamp  DateTime @default(now())
+  shortUrl   ShortUrl @relation(fields: [shortUrlId], references: [id], onDelete: Cascade)
 }
 
 model ToolUsage {

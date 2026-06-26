@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 
 let prisma: PrismaClient;
 
@@ -45,30 +46,18 @@ const makeMockPrisma = () => {
   });
 };
 
-const getMariaDbAdapter = (urlString: string) => {
+const getPostgresAdapter = (urlString: string) => {
   try {
-    const parsed = new URL(urlString);
-    const user = decodeURIComponent(parsed.username);
-    const password = decodeURIComponent(parsed.password);
-    const host = parsed.hostname;
-    const port = parsed.port ? parseInt(parsed.port) : 3306;
-    const database = parsed.pathname.substring(1);
-
-    const sslMode = parsed.searchParams.get("ssl-mode") || parsed.searchParams.get("sslmode") || parsed.searchParams.get("sslaccept");
-    const useSsl = sslMode ? sslMode.toLowerCase() !== 'disabled' : (host !== 'localhost' && host !== '127.0.0.1');
-    const ssl = useSsl ? { rejectUnauthorized: false } : undefined;
-
-    return new PrismaMariaDb({
-      host,
-      port,
-      user,
-      password,
-      database,
-      connectionLimit: 10,
-      ssl,
+    const pool = new Pool({
+      connectionString: urlString,
+      max: 10,
+      ssl: {
+        rejectUnauthorized: false
+      }
     });
+    return new PrismaPg(pool);
   } catch (error) {
-    console.error("Failed to parse DATABASE_URL for MariaDB adapter:", error);
+    console.error("Failed to initialize PostgreSQL adapter:", error);
     throw error;
   }
 };
@@ -76,11 +65,11 @@ const getMariaDbAdapter = (urlString: string) => {
 if (databaseUrl) {
   const globalForPrisma = global as unknown as { prisma: PrismaClient };
   if (process.env.NODE_ENV === 'production') {
-    const adapter = getMariaDbAdapter(databaseUrl);
+    const adapter = getPostgresAdapter(databaseUrl);
     prisma = new PrismaClient({ adapter });
   } else {
     if (!globalForPrisma.prisma) {
-      const adapter = getMariaDbAdapter(databaseUrl);
+      const adapter = getPostgresAdapter(databaseUrl);
       globalForPrisma.prisma = new PrismaClient({ adapter });
     }
     prisma = globalForPrisma.prisma;
